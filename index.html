@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <meta name="description" content="">
+</head>
+
+<body>
+    <p>PDF MAKE - CUSTOM FONTS</p>
+
+    <button onclick="print()">Print PDF</button>
+
+    <script src="./pdfmake.min.js"></script>
+    <script src="./vfs_fonts.js"></script>
+
+    <script>
+
+        function print() {
+
+            pdfMake.fonts = {
+
+                Roboto: {
+                    normal: 'Roboto-Regular.ttf',
+                    bold: 'Roboto-Medium.ttf',
+                    italics: 'Roboto-Italic.ttf',
+                    bolditalics: 'Roboto-MediumItalic.ttf'
+                },
+                OpenSans: {
+                    normal: 'OpenSans-Regular.ttf',
+                    bold: 'OpenSans-Bold.ttf',
+                    italics: 'OpenSans-Italic.ttf',
+                    bolditalics: 'OpenSans-BoldItalic.ttf'
+                },
+                FontawesomeRegular: {
+                    normal: 'fa-regular-400.ttf',
+                    bold: 'fa-regular-400.ttf',
+                    italics: 'fa-regular-400.ttf',
+                    bolditalics: 'fa-regular-400.ttf'
+                },
+                FontawesomeSolid: {
+                    normal: 'fa-solid-900.ttf',
+                    bold: 'fa-solid-900.ttf',
+                    italics: 'fa-solid-900.ttf',
+                    bolditalics: 'fa-solid-900.ttf'
+                },
+                FontawesomeBrands: {
+                    normal: 'fa-brands-400.ttf',
+                    bold: 'fa-brands-400.ttf',
+                    italics: 'fa-brands-400.ttf',
+                    bolditalics: 'fa-brands-400.ttf'
+                }
+            }
+
+            var docDefinition = {
+                content: [
+                    { text: 'Roboto font', font: 'Roboto' },
+                    { text: 'Roboto font (bold)', font: 'Roboto', bold: true },
+                    { text: 'OpenSans font ', font: 'OpenSans' },
+                    { text: 'OpenSans font (bold)', font: 'OpenSans', bold: true },
+                    { text: '', font: 'FontawesomeRegular' },
+                    { text: '', font: 'FontawesomeRegular', fontSize: 32 },
+                    { text: '', font: 'FontawesomeSolid' },
+                    { text: '', font: 'FontawesomeSolid', color: 'red' },
+                    {
+                        text: [
+                            { text: 'This is an icon in the text ', font: 'OpenSans' },
+                            { text: '', font: 'FontawesomeSolid' },
+                            { text: ' blablabla', font: 'OpenSans' },
+                        ]
+                    },
+                    // using styles
+                    { text: 'Paragraph using styles formating', style: 'body' },
+                    { text: '', style: 'symbol' },
+                ],
+
+
+                styles: {
+                    symbol: {
+                        font: 'FontawesomeRegular',
+                        fontSize: 12
+
+                    },
+                    body: {
+                        font: 'OpenSans',
+                        fontSize: 12
+                    }
+                }
+
+            }
+
+            pdfMake.createPdf(docDefinition).download('test.pdf');
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
